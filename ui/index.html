@@ -7,28 +7,20 @@
 </head>
 <body>
  <div id="menu_pane">
-  <div id="menu_bar">
-   <div id="create_issue_button" onclick="$('#start_issue').show();">
-    +
-   </div>
+  <div class="issue" id="new_issue" onclick="$('#start_issue').show();">
+   Post a new issue...
   </div>
  </div>
  <div id="content_pane">
   <div class="create_issue" id="start_issue">
    <form class="create_issue_form" action="">
-    <h1>Describe the issue as best you can.</h1>
+    Describe the issue as best you can.<br>
+    <textarea name="issue_text" id="issue_text"></textarea><br>
     <button type="button" onclick="$('#start_issue').hide();">Cancel</button>
-    <button type="button" onclick="$('#start_issue').hide(); $('#describe_issue').show();">Use Editor</button>
-    <input name="issue" type="file">
-   </form>
-  </div>
-  <div class="create_issue" id="describe_issue">
-   <form action="$.post("cgi/create_issue.py", {issu">
-    <textarea name="issue" id="issue"></textarea><br>
-    <button type="button" onclick="$('#describe_issue').hide(); $('#start_issue').show();">Cancel</button>
     <button type="button" onclick="create_issue($('#issue').val(), function(){$('#issue').val(''); $('#describe_issue').hide(); });">Submit</button>
    </form>
   </div>
  </div>
 </body>
 </html>
+

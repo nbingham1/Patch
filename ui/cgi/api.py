@@ -229,8 +229,8 @@ def is_in_cluster(sent, clusters):
     dists = []
     rdists = []
     for i in xrange(len(clusters)):
-        dists.append(blob_path_similarity(sent, cluster[i], 5, "NN"))
-        rdists.append(blob_rhine_similarity(sent, cluster[i], 4, "NNP"))
+        dists.append(blob_path_similarity(sent, clusters[i], 5, "NN"))
+        rdists.append(blob_rhine_similarity(sent, clusters[i], 4, "NNP"))
     cum = []
     cur_max = 0
     max_idx = -1
@@ -240,6 +240,7 @@ def is_in_cluster(sent, clusters):
         if temp > cur_max:
             cur_max = temp
             max_idx = i
+    print cum
     if cur_max > .3:        #This is the threshold for new cluster
         return max_idx
     else:

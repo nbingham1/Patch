@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Patch</title>
+<link rel="stylesheet" type="text/css" href="/index.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
+</head>
+<body>
+ <div id="menu_pane">
+  <div id="menu_bar">
+   <div id="create_issue_button" onclick="$('#start_issue').show();">
+    +
+   </div>
+  </div>
+ </div>
+ <div id="content_pane">
+  <div class="create_issue" id="start_issue">
+   <form class="create_issue_form" action="">
+    <h1>Describe the issue as best you can.</h1>
+    <button type="button" onclick="$('#start_issue').hide();">Cancel</button>
+    <button type="button" onclick="$('#start_issue').hide(); $('#describe_issue').show();">Use Editor</button>
+    <input name="issue" type="file">
+   </form>
+  </div>
+  <div class="create_issue" id="describe_issue">
+   <form action="$.post("cgi/create_issue.py", {issu">
+    <textarea name="issue" id="issue"></textarea><br>
+    <button type="button" onclick="$('#describe_issue').hide(); $('#start_issue').show();">Cancel</button>
+    <button type="button" onclick="create_issue($('#issue').val(), function(){$('#issue').val(''); $('#describe_issue').hide(); });">Submit</button>
+   </form>
+  </div>
+ </div>
+</body>
+</html>

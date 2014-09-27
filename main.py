@@ -34,7 +34,7 @@ def extract_words(blob, pos):
 	words = []
 	tags = blob.tags
 	for tag in tags:
-		if pos in tag[1]:
+		if pos == "" or pos in tag[1]:
 			words.append(tag[0])
 	return words
 
@@ -48,7 +48,11 @@ def words_to_synsets(words, pos):
 def tuples_to_synsets(words, pos):
         synsets = []
 	for word in words:
-                synset = Word(word[0]).get_synsets(pos=wordnet_pos(pos))
+		synset = []
+		if pos == "":
+			synset = Word(word[0]).get_synsets()
+		else:
+                	synset = Word(word[0]).get_synsets(pos=wordnet_pos(pos))
                 if len(synset) > 0:
 		    synsets.append([synset[0], word[1]])
 	return synsets
@@ -81,10 +85,12 @@ def list_path_similarity(words1, words2):
 	total=0
 	score=0
 	for pair in pairs:
-		score += pair[0]*pair[1]
-		total += pair[1]
-	
-	score /= total	
+		if pair[0] is not None and pair[1] is not None:
+			score += pair[0]*pair[1]
+			total += pair[1]
+
+	if total != 0:	
+		score /= total	
 
 	return score
 
@@ -119,10 +125,12 @@ def rhine_similarity(words1, words2):
 	total=0
 	score=0
 	for pair in pairs:
-		score += pair[0]*pair[1]
-		total += pair[1]
-	
-	score /= total	
+		if pair[0] is not None and pair[1] is not None:
+			score += pair[0]*pair[1]
+			total += pair[1]
+
+	if total != 0:
+		score /= total	
 
 	return score
 
@@ -141,6 +149,8 @@ def path_similarity_flow(blob, count, pos):
         for i in xrange(len(sentences)-1):
 		y.append(blob_path_similarity(sentences[i], sentences[i+1], count, pos))
 	return y
+
+
 
 
 # Pull out news articles
@@ -195,10 +205,17 @@ print list_path_similarity(synsets1_nnp, synsets2_nnp)
 
 
 # This list will be a list of distances, indexed by sentence, of a word block
-sentence_dist = path_similarity_flow(text1, 5, "VB")
+
+sentence_dist = path_similarity_flow(text1, 5, "NN")
+sentence_dist2 = path_similarity_flow(text1, 5, "VB")
+
+sentence_dist3 = []
+
+for i in xrange(len(sentence_dist)):
+	sentence_dist3.append(sentence_dist[i] + sentence_dist2[i])
 
 
-plot(sentence_dist,'o-')
+plot(sentence_dist3,'o-')
 xlabel("Sentence number")
 ylabel("correlation")
 for i in xrange(len(text1.sentences)):

@@ -23,13 +23,15 @@ class Rhine:
 
     def _call(self, req):
         response = get('http://api.rhine.io/' + self.api_key + '/' + req)
-        try:
+	try:
             data = response.json()
         except:
             raise InvalidRequest(req + ' is not a valid request.')
         if 'error' in data:
             raise CallError('Error: ' + data['error'])
-        return data
+	if data['distance'] == 'timeout':
+		data['distance'] = 'nan'
+	return data
 
     def distance(self, entity1, entity2):
         return float(self._call('distance/{0}/{1}' \

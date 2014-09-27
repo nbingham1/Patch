@@ -79,6 +79,7 @@ text1 = tb.TextBlob(a)
 
 wordlist1 = extract_words(wiki, "NN")
 freq1 = freqGetTuple(10, wordlist1)
+print freq1
 synsets1 = tuples_to_synsets(freq1, "NN")
 
 wordlist2 = extract_words(wiki2, "NN")

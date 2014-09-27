@@ -126,7 +126,7 @@ def rhine_similarity(words1, words2):
 
 	return score
 
-def blob_path_similary(blob1, blob2, count, pos):
+def blob_path_similarity(blob1, blob2, count, pos):
 	wl1 = extract_words(blob1, pos)
 	wl2 = extract_words(blob2, pos)
 	fr1 = freqGetTuple(count, wl1)
@@ -135,23 +135,23 @@ def blob_path_similary(blob1, blob2, count, pos):
 	sn2 = tuples_to_synsets(fr2, pos)
 	return list_path_similarity(sn1, sn2)
 
-def path_similarity_flow(blob, count, pos)
+def path_similarity_flow(blob, count, pos):
 	sentences = blob.sentences
 	y = []
-	for i in xrange(len(sentences)-1)
+        for i in xrange(len(sentences)-1):
 		y.append(blob_path_similarity(sentences[i], sentences[i+1], count, pos))
 	return y
 
 
 # Pull out news articles
-f1 = open('./data/articleFox.txt')
+f1 = open('./data/article1.txt')
 a = f1.read()
-a = "Edward dog tree" 
+#a = "Edward dog tree" 
 text1 = TextBlob(a)
 
 f2 = open('./data/article2.txt')
 b = f2.read()
-b = "Mary dog"
+#b = "Mary dog"
 text2 = TextBlob(b)
 
 
@@ -195,12 +195,14 @@ print list_path_similarity(synsets1_nnp, synsets2_nnp)
 
 
 # This list will be a list of distances, indexed by sentence, of a word block
-sentence_dist = [.5, .6, .7, .6, .7, .2, .5, .2, .9, .5]
+sentence_dist = path_similarity_flow(text1, 5, "VB")
 
 
-
-plot(sentence_dist)
+plot(sentence_dist,'o-')
 xlabel("Sentence number")
 ylabel("correlation")
-show()
+for i in xrange(len(text1.sentences)):
+    print i
+    print text1.sentences[i]
 
+show()

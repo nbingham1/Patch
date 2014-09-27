@@ -75,12 +75,9 @@ def list_path_similarity(words1, words2):
 			if pair[3] not in covered2:
 				covered2.append(pair[3])
 
-        print pairs
-
 	remove.sort(reverse=True)
 	for idx in remove:
 		pairs.pop(idx)
-        print pairs
 
 	total=0
 	score=0
@@ -98,14 +95,11 @@ def rhine_similarity(words1, words2):
 	pairs = []
 	for word1 in words1:
 		for word2 in words2:
-                        print word1[0]
-                        print word2[0]
                         dist = rb.freshRhine().distance(word1[0],word2[0])
                         if math.isnan(dist):
                             dist = 0
                         else:
                             dist = 30/(dist+29)
-                        print dist 
 			pairs.append([dist, min(word1[1], word2[1]), word1[0], word2[0]])
 	pairs.sort(reverse=True)
 	covered1 = []
@@ -161,3 +155,13 @@ def path_n_similarity_flow(blob, count, pos, n):
 	    y.append(blob_path_similarity(sentences[i], sentences[i-n], count, pos))
 	return y
 
+def representative_blob(blob, count, pos):
+	sentences = blob.sentences
+	scores = [0] * len(sentences)
+        for i in xrange(len(sentences)):
+                for j in xrange(i+1, len(sentences)):
+                        sim = blob_path_similarity(sentences[i], sentences[j], count, pos)
+                        scores[i] += sim
+			scores[j] += sim
+        
+	return sentences[scores.index(max(scores))]

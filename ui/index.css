@@ -25,6 +25,8 @@ body
 
 .issue
 {
+	font-family: Verdana;
+        font-size: 20px;
 	width: 100%;
 	height: 100px;
 	margin: 0px;
@@ -33,6 +35,8 @@ body
 	border-left: 0px;
 	border-right: 0px;
 	background-color: #FFFFFF;
+	text-align: center;
+        cursor: pointer;
 }
 
 .issue:hover
@@ -42,11 +46,8 @@ body
 
 #new_issue
 {
-	font-family: Verdana;
 	font-size: 30px;
-	text-align: center;
 	line-height: 100px;
-	cursor: pointer;
 }
 
 #content_pane

@@ -6,6 +6,8 @@ import nltk
 from textblob import *
 from textblob.wordnet import *
 from nltk.corpus import wordnet as wn
+from api import *
+from api2 import *
 
 con = db.connect('localhost', 'patch', 'democracy in action', 'patch')
 cur = con.cursor()
@@ -24,6 +26,5 @@ print
 # data
 for result in results:
 	print '<div class="issue">'
-	sentences = TextBlob(result[0]).sentences
-	
+	print representative_blob(TextBlob(result[0]), 3, "NN")
 	print '</div>'

@@ -187,7 +187,7 @@ def rhine_n_similarity_flow(sentences, count, pos, n):
 def flow_fusion(flows, n):
     combo_flow = []
     #Don't use more ns than this. Seriously. 
-    n_weights = [1, .7, .3, .2, .7, .2, 0, 0, 0, 0, 0, 0, 0, 0]
+    n_weights = [1, .7, .3, .7, .2, 0, 0, 0, 0, 0, 0, 0, 0]
     #This should add to 1, and be the length of the rolling ave
     conv_function = [.4, .4, .2]
     #Incorperate n_weights
@@ -223,6 +223,28 @@ def find_arguments(flow):
             arglist.append(last)
 
     return arglist
+
+#returns -1 if sent should be in its own cluster, and index into cluster if should be paired
+def is_in_cluster(sent, clusters):
+    dists = []
+    rdists = []
+    for i in xrange(len(clusters)):
+        dists.append(blob_path_similarity(sent, clusters[i], 5, "NN"))
+        rdists.append(blob_rhine_similarity(sent, clusters[i], 4, "NNP"))
+    cum = []
+    cur_max = 0
+    max_idx = -1
+    for i in xrange(len(dists)):
+        temp = .6*dists[i]+.4*rdists[i]         #These are magic numbers.
+        cum.append(temp)
+        if temp > cur_max:
+            cur_max = temp
+            max_idx = i
+    print cum
+    if cur_max > .3:        #This is the threshold for new cluster
+        return max_idx
+    else:
+        return -1
 
 def representative_blob(blobs, count, pos):
 	scores = [0] * len(blobs)

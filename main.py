@@ -4,6 +4,9 @@ from textblob.wordnet import *
 from nltk.corpus import wordnet as wn
 from textProc import *
 
+from rhine import *
+from rhine_reader import *
+
 def wordnet_pos(treebank_pos):
 	if "NN" in treebank_pos:
 		return wn.NOUN
@@ -72,8 +75,10 @@ def list_path_similarity(words1, words2):
 
 	return score
 
-wiki = TextBlob("The dog ran around the flag pole.")
-wiki2 = TextBlob("Dogs like poles, but not flags.")
+
+rb = RhineBundle()
+rb.rhineGenerate('Rhine.txt')
+#To get a fresh rhine request, do rb.freshRhine() which returns a rhine
 
 f1 = open('./data/articleFox.txt')
 a = f1.read()

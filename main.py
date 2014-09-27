@@ -1,18 +1,16 @@
 from rhine import *
 import timeit
+from rhine_reader import *
 
 
-rhine = Rhine('5454cb1ff1324684a0293846cabf395c')       #nak54
-rhine1 = Rhine('c3b8a2ee76034dd99f33cf30f108fa40')      #nicholasakramer@gmail
+rhines = rhineGenerate('Rhine.txt')
 
 tic = timeit.default_timer()
-print rhine.distance('Democrat', 'Republican')
-print rhine1.distance('Hello', 'Goodbye')
-print rhine.distance('Hello', 'Kitty')
-print rhine1.distance('Hello', 'Darkness')
-print rhine.distance('Hello', 'Puppy')
-
-
+print rhines[1].distance('Democrat', 'Republican')
+print rhines[2].distance('Hello', 'Goodbye')
+print rhines[3].distance('Hello', 'Kitty')
+print rhines[4].distance('Hello', 'Darkness')
+print rhines[0].distance('Hello', 'Puppy')
 toc = timeit.default_timer()
 
 

@@ -102,8 +102,10 @@ def rhine_similarity(words1, words2):
                         print word2[0]
                         dist = rb.freshRhine().distance(word1[0],word2[0])
                         if math.isnan(dist):
-                            dist = 100
-                        dist = dist/100
+                            dist = 0
+                        else:
+                            dist = 30/(dist+29)
+                        print dist 
 			pairs.append([dist, min(word1[1], word2[1]), word1[0], word2[0]])
 	pairs.sort(reverse=True)
 	covered1 = []
@@ -146,16 +148,27 @@ def blob_path_similarity(blob1, blob2, count, pos):
 def path_similarity_flow(blob, count, pos):
 	sentences = blob.sentences
 	y = []
-        for i in xrange(len(sentences)-1):
-		y.append(blob_path_similarity(sentences[i], sentences[i+1], count, pos))
+        y.append(0)
+        for i in xrange(1,len(sentences)):
+		y.append(blob_path_similarity(sentences[i], sentences[i-1], count, pos))
+	return y
+def path_n_similarity_flow(blob, count, pos, n):
+	sentences = blob.sentences
+	y = []
+        for i in xrange(n):
+            y.append(0)
+        for i in xrange(n,len(sentences)):
+	    y.append(blob_path_similarity(sentences[i], sentences[i-n], count, pos))
 	return y
 
 
 
 
+
 # Pull out news articles
-f1 = open('./data/article1.txt')
+f1 = open('./data/articleFox.txt')
 a = f1.read()
+a = a.decode('utf-8').encode('ascii','ignore')
 #a = "Edward dog tree" 
 text1 = TextBlob(a)
 
@@ -199,27 +212,47 @@ print list_path_similarity(synsets1, synsets2)
 
 print "pronoun similarity of the two articles: "
 print list_path_similarity(synsets1_nnp, synsets2_nnp)
-#print rhine_similarity(freq1_nnp, freq2_nnp)
+print rhine_similarity(freq1_nnp, freq2_nnp)
 
 #print extract_words(wiki, "NN").path_similarity(extract_words(wiki2, "NN"))
 
 
 # This list will be a list of distances, indexed by sentence, of a word block
-
+'''
 sentence_dist = path_similarity_flow(text1, 5, "NN")
-sentence_dist2 = path_similarity_flow(text1, 5, "VB")
+sentence_dist1 = path_n_similarity_flow(text1, 5, "NN",1)
+sentence_dist2 = path_n_similarity_flow(text1, 5, "NN",2)
+sentence_dist3 = path_n_similarity_flow(text1, 5, "NN",3)
+sentence_dist4 = path_n_similarity_flow(text1, 5, "NN",4)
+#sentence_dist2 = path_similarity_flow(text1, 5, "VB")
 
-sentence_dist3 = []
+sentence_combine = []
 
 for i in xrange(len(sentence_dist)):
-	sentence_dist3.append(sentence_dist[i] + sentence_dist2[i])
+    sentence_combine.append(sentence_dist1[i] + .7*sentence_dist2[i] + .5*sentence_dist3[i])
 
+for i in xrange(len(sentence_combine)-2):
+    sentence_combine[i] = .4*sentence_combine[i] + .4*sentence_combine[i+1] + .2*sentence_combine[i+2]
 
-plot(sentence_dist3,'o-')
+figure()
+plot(sentence_dist1, 'o-')
 xlabel("Sentence number")
 ylabel("correlation")
-for i in xrange(len(text1.sentences)):
-    print i
-    print text1.sentences[i]
+
+figure()
+plot(sentence_dist2, 'o-')
+
+figure()
+plot(sentence_dist3, 'o-')
+
+figure()
+plot(sentence_combine, 'o-')
+
+
+#for i in xrange(len(text1.sentences)):
+#    print i
+#    print text1.sentences[i]
+
 
 show()
+'''

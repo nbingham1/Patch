@@ -4,7 +4,8 @@ from textblob import *
 from textblob.wordnet import *
 from nltk.corpus import wordnet as wn
 from textProc import *
-
+import matplotlib as plt 
+from pylab import *
 from rhine import *
 from rhine_reader import *
 
@@ -176,4 +177,13 @@ print list_path_similarity(synsets1_nnp, synsets2_nnp)
 #print rhine_similarity(freq1_nnp, freq2_nnp)
 
 #print extract_words(wiki, "NN").path_similarity(extract_words(wiki2, "NN"))
+
+
+# This list will be a list of distances, indexed by sentence, of a word block
+sentence_dist = [.5, .6, .7, .6, .7, .2, .5, .2, .9, .5]
+
+plot(sentence_dist)
+xlabel("Sentence number")
+ylabel("correlation")
+show()
 

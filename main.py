@@ -32,9 +32,11 @@ def words_to_synsets(words, pos):
 
 
 def tuples_to_synsets(words, pos):
-	synsets = []
+        synsets = []
 	for word in words:
-		synsets.append([word[0].get_synsets(pos=wordnet_pos(pos))[0], word[1]])
+                synset = Word(word[0]).get_synsets(pos=wordnet_pos(pos))
+                if len(synset) > 0:
+		    synsets.append([synset[0], word[1]])
 	return synsets
 
 def list_path_similarity(words1, words2):
@@ -73,17 +75,22 @@ def list_path_similarity(words1, words2):
 wiki = TextBlob("The dog ran around the flag pole.")
 wiki2 = TextBlob("Dogs like poles, but not flags.")
 
-f1 = open('./data/article1.txt')
+f1 = open('./data/articleFox.txt')
 a = f1.read()
-text1 = tb.TextBlob(a)
+text1 = TextBlob(a)
 
-wordlist1 = extract_words(wiki, "NN")
-freq1 = freqGetTuple(10, wordlist1)
+f2 = open('./data/article2.txt')
+b = f2.read()
+text2 = TextBlob(b)
+
+wordlist1 = extract_words(text1, "NN")
+freq1 = freqGetTuple(50, wordlist1)
 print freq1
 synsets1 = tuples_to_synsets(freq1, "NN")
 
-wordlist2 = extract_words(wiki2, "NN")
-freq2 = freqGetTuple(10, wordlist2)
+wordlist2 = extract_words(text2, "NN")
+freq2 = freqGetTuple(50, wordlist2)
+print freq2
 synsets2 = tuples_to_synsets(freq2, "NN")
 
 print list_path_similarity(synsets1, synsets2)

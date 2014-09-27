@@ -35,6 +35,14 @@ def words_to_synsets(words, pos):
 wiki = TextBlob("The dog ran around the flag pole.")
 wiki2 = TextBlob("Dogs like poles, but not flags.")
 
+f1 = open('./data/article1.txt')
+a = f1.read()
+text1 = tb.TextBlob(a)
+
+b = extract_words(text1, "NN")
+
+print freqGet(7, b)
+
 print extract_words(wiki, "NN")
 
 

@@ -14,7 +14,10 @@ print rhines[4].distance('Hello', 'Darkness')
 print rhines[0].distance('Hello', 'Puppy')
 print rhines[7].closest_entities("Obama")
 print rhines[8].synonym_check('President Barack Obama', 'Obama')
-#a = rhines[9].entity_extraction('Hello Bob')
+a = rhines[9].entity_extraction('Hello Bob')
+
+print a
+
 #for el in a:
 #    print el
 

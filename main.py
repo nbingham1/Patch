@@ -63,14 +63,19 @@ print list_path_similarity(synsets1, synsets2)
 
 print "pronoun similarity of the two articles: "
 print list_path_similarity(synsets1_nnp, synsets2_nnp)
-print rhine_similarity(freq1_nnp, freq2_nnp)
+#print rhine_similarity(freq1_nnp, freq2_nnp)
 
 #print extract_words(wiki, "NN").path_similarity(extract_words(wiki2, "NN"))
 
 
 # This list will be a list of distances, indexed by sentence, of a word block
-'''
+
 sentence_dist = path_similarity_flow(text1, 5, "NN")
+
+print "Starting rhine similarity "
+sentence_dist = rhine_n_similarity_flow(text1, 3, "NNP", 1)
+print "finished rhine similarity "
+
 sentence_dist1 = path_n_similarity_flow(text1, 5, "NN",1)
 sentence_dist2 = path_n_similarity_flow(text1, 5, "NN",2)
 sentence_dist3 = path_n_similarity_flow(text1, 5, "NN",3)
@@ -106,4 +111,4 @@ plot(sentence_combine, 'o-')
 
 
 show()
-'''
+

@@ -145,6 +145,14 @@ def blob_path_similarity(blob1, blob2, count, pos):
 	sn2 = tuples_to_synsets(fr2, pos)
 	return list_path_similarity(sn1, sn2)
 
+def blob_rhine_similarity(blob1, blob2, count, pos):
+	wl1 = extract_words(blob1, pos)
+	wl2 = extract_words(blob2, pos)
+	fr1 = freqGetTuple(count, wl1)
+	fr2 = freqGetTuple(count, wl2)
+	return rhine_similarity(fr1, fr2)
+
+
 def path_similarity_flow(blob, count, pos):
 	sentences = blob.sentences
 	y = []
@@ -152,6 +160,7 @@ def path_similarity_flow(blob, count, pos):
         for i in xrange(1,len(sentences)):
 		y.append(blob_path_similarity(sentences[i], sentences[i-1], count, pos))
 	return y
+
 def path_n_similarity_flow(blob, count, pos, n):
 	sentences = blob.sentences
 	y = []
@@ -159,5 +168,14 @@ def path_n_similarity_flow(blob, count, pos, n):
             y.append(0)
         for i in xrange(n,len(sentences)):
 	    y.append(blob_path_similarity(sentences[i], sentences[i-n], count, pos))
+	return y
+
+def rhine_n_similarity_flow(blob, count, pos, n):
+	sentences = blob.sentences
+	y = []
+        for i in xrange(n):
+            y.append(0)
+        for i in xrange(n,len(sentences)):
+	    y.append(blob_rhine_similarity(sentences[i], sentences[i-n], count, pos))
 	return y
 

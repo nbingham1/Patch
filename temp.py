@@ -1,3 +1,5 @@
+import sys
+sys.path.append("ui/cgi")
 from rhine import *
 
 rhine = Rhine('sdf0b913e4b07b5243b7f527')

@@ -70,20 +70,18 @@ synsets2_nnp = tuples_to_synsets(freq2_nnp, "NNP")
 
 # This list will be a list of distances, indexed by sentence, of a word block
 
-#sentence_dist = path_similarity_flow(text1, 5, "NN")
+#sentence_dist = path_similarity_flow(text1.sentences, 5, "NN")
 print "Starting rhine"
-rhine_dist = rhine_n_similarity_flow(text1, 5, "NNP", 1)
+rhine_dist = rhine_n_similarity_flow(text1.sentences, 5, "NNP", 1)
 print "Left rhine "
 
 sents = []
 
 for n in [1,2,3,4]:
-    sents.append(path_n_similarity_flow(text1, 5, "NN",n))
+    sents.append(path_n_similarity_flow(text1.sentences, 5, "NN",n))
 
 sents.append(rhine_dist)
 
-for n in [1,2,3,4,5]:
-    sents.append(sents[0])
 
 flow = flow_fusion(sents, 5)
 

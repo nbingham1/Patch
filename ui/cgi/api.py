@@ -155,16 +155,14 @@ def blob_rhine_similarity(blob1, blob2, count, pos):
 	return rhine_similarity(fr1, fr2)
 
 
-def path_similarity_flow(blob, count, pos):
-	sentences = blob.sentences
+def path_similarity_flow(sentences, count, pos):
 	y = []
         y.append(0)
         for i in xrange(1,len(sentences)):
 		y.append(blob_path_similarity(sentences[i], sentences[i-1], count, pos))
 	return y
 
-def path_n_similarity_flow(blob, count, pos, n):
-	sentences = blob.sentences
+def path_n_similarity_flow(sentences, count, pos, n):
 	y = []
         for i in xrange(n):
             y.append(0)
@@ -172,8 +170,7 @@ def path_n_similarity_flow(blob, count, pos, n):
 	    y.append(blob_path_similarity(sentences[i], sentences[i-n], count, pos))
 	return y
 
-def rhine_n_similarity_flow(blob, count, pos, n):
-	sentences = blob.sentences
+def rhine_n_similarity_flow(sentences, count, pos, n):
 	y = []
         for i in xrange(n):
             y.append(0)
@@ -190,17 +187,15 @@ def rhine_n_similarity_flow(blob, count, pos, n):
 def flow_fusion(flows, n):
     combo_flow = []
     #Don't use more ns than this. Seriously. 
-    n_weights = [1, .7, .5, .3, .7, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    n_weights = [1, .7, .3, .2, .7, .2, 0, 0, 0, 0, 0, 0, 0, 0]
     #This should add to 1, and be the length of the rolling ave
     conv_function = [.4, .4, .2]
     #Incorperate n_weights
     for i in xrange(len(flows[0])):
         temp = 0
-        for j in xrange(len(flows)/2):
+        for j in xrange(len(flows)):
             temp += n_weights[j]*flows[j][i]
         combo_flow.append(temp)
-
-    #CURRENTLY IGNORING RHINE INFO
 
 
     #Average

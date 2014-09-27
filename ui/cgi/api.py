@@ -95,11 +95,18 @@ def rhine_similarity(words1, words2):
 	pairs = []
 	for word1 in words1:
 		for word2 in words2:
-                        dist = rb.freshRhine().distance(word1[0],word2[0])
-                        if math.isnan(dist):
+                        #print word1[0]
+                        #print word2[0]
+                        try:
+                            dist = rb.freshRhine().distance(word1[0],word2[0])
+                            if math.isnan(dist):
+                                dist = 0
+                            else:
+                                dist = 30/(dist+29)
+                        except:
+                            rb.timeouts += 1
                             dist = 0
-                        else:
-                            dist = 30/(dist+29)
+                        #print dist
 			pairs.append([dist, min(word1[1], word2[1]), word1[0], word2[0]])
 	pairs.sort(reverse=True)
 	covered1 = []
@@ -127,6 +134,7 @@ def rhine_similarity(words1, words2):
 
 	if total != 0:
 		score /= total	
+
 
 	return score
 
@@ -171,7 +179,55 @@ def rhine_n_similarity_flow(blob, count, pos, n):
             y.append(0)
         for i in xrange(n,len(sentences)):
 	    y.append(blob_rhine_similarity(sentences[i], sentences[i-n], count, pos))
-	return y
+        print "Rhine timeouts (dropped points): "
+        print rb.timeouts
+        return y
+
+#Careful about the formatting of flows
+#flows right now is a list of lists. The first n are similarity_flow 0 to n-1
+#The next n are rhine_similarity_flow 0 to n-1.
+
+def flow_fusion(flows, n):
+    combo_flow = []
+    #Don't use more ns than this. Seriously. 
+    n_weights = [1, .7, .5, .3, .7, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #This should add to 1, and be the length of the rolling ave
+    conv_function = [.4, .4, .2]
+    #Incorperate n_weights
+    for i in xrange(len(flows[0])):
+        temp = 0
+        for j in xrange(len(flows)/2):
+            temp += n_weights[j]*flows[j][i]
+        combo_flow.append(temp)
+
+    #CURRENTLY IGNORING RHINE INFO
+
+
+    #Average
+    for i in xrange(len(combo_flow)-len(conv_function)):
+        preval = combo_flow[i]
+        for j in xrange(len(conv_function)):
+            combo_flow[i] += combo_flow[i+j]*conv_function[j]
+        combo_flow[i] -= preval
+    return combo_flow
+
+
+def find_arguments(flow):
+    args = [0]
+    #Find all local minima
+    for i in xrange(1, len(flow)-1):
+        if (flow[i-1] > flow[i]) and (flow[i] < flow[i+1]):
+            args.append(i)
+    args.append(len(flow))
+
+    arglist = []
+    last = -10
+    for i in xrange(len(args)-1):
+        if args[i] - last > 2:
+            last = args[i]
+            arglist.append(last)
+
+    return arglist
 
 def representative_blob(blob, count, pos):
 	sentences = blob.sentences

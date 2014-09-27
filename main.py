@@ -58,11 +58,11 @@ print freq2_nnp
 synsets2_nnp = tuples_to_synsets(freq2_nnp, "NNP")
 
 ######
-print "list_path_similarity of the two articles: "
-print list_path_similarity(synsets1, synsets2)
+#print "list_path_similarity of the two articles: "
+#print list_path_similarity(synsets1, synsets2)
 
-print "pronoun similarity of the two articles: "
-print list_path_similarity(synsets1_nnp, synsets2_nnp)
+#print "pronoun similarity of the two articles: "
+#print list_path_similarity(synsets1_nnp, synsets2_nnp)
 #print rhine_similarity(freq1_nnp, freq2_nnp)
 
 #print extract_words(wiki, "NN").path_similarity(extract_words(wiki2, "NN"))
@@ -70,12 +70,54 @@ print list_path_similarity(synsets1_nnp, synsets2_nnp)
 
 # This list will be a list of distances, indexed by sentence, of a word block
 
-sentence_dist = path_similarity_flow(text1, 5, "NN")
+#sentence_dist = path_similarity_flow(text1, 5, "NN")
+print "Starting rhine"
+rhine_dist = rhine_n_similarity_flow(text1, 5, "NNP", 1)
+print "Left rhine "
 
-print "Starting rhine similarity "
-sentence_dist = rhine_n_similarity_flow(text1, 3, "NNP", 1)
-print "finished rhine similarity "
+sents = []
 
+for n in [1,2,3,4]:
+    sents.append(path_n_similarity_flow(text1, 5, "NN",n))
+
+sents.append(rhine_dist)
+
+for n in [1,2,3,4,5]:
+    sents.append(sents[0])
+
+flow = flow_fusion(sents, 5)
+
+figure()
+plot(sents[0], 'o-')
+xlabel("Sentence number")
+ylabel("correlation")
+
+figure()
+plot(rhine_dist, 'o-')
+xlabel("Sentence number")
+ylabel("correlation")
+
+
+
+figure()
+plot(flow, 'o-')
+xlabel("Sentence number")
+ylabel("correlation")
+
+
+for i in xrange(len(text1.sentences)):
+    print i
+    print text1.sentences[i]
+
+
+args = find_arguments(flow)
+
+for el in args:
+    axvline(x=el, ymin=0, linewidth=1, color='r')
+show()
+
+
+'''
 sentence_dist1 = path_n_similarity_flow(text1, 5, "NN",1)
 sentence_dist2 = path_n_similarity_flow(text1, 5, "NN",2)
 sentence_dist3 = path_n_similarity_flow(text1, 5, "NN",3)
@@ -111,4 +153,4 @@ plot(sentence_combine, 'o-')
 
 
 show()
-
+'''

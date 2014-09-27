@@ -3,10 +3,14 @@
 import cgi
 import MySQLdb as db
 
+form = cgi.FieldStorage()
+
+issue = form.getvalue('issue')
+
 con = db.connect('localhost', 'patch', 'democracy in action', 'patch')
 cur = con.cursor()
 
-cur.execute("select * from issues");
+cur.execute("select id,rep from arguments where issue=%s", (issue));
 
 results = cur.fetchall()
 
@@ -19,6 +23,6 @@ print
 
 # data
 for result in results:
-	print '<div class="item" id="item_' + str(result[0]) + '" onclick="$(\'#account_pane\').hide(); $(\'#issue_pane\').show(); pull_argument_summaries(\'' + str(result[0]) + '\', function(data, response){ $(\'#issues_pane\').append(data); });">'
+	print '<div class="item" id="item_' + str(result[0]) + '" onclick="$(\'#issue_pane\').hide(); $(\'#argument_pane\').show(); ">'
 	print result[1]
 	print '</div>'

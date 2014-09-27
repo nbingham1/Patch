@@ -10,7 +10,7 @@ body
 	border: 0px;
 }
 
-#menu_pane
+.menu_pane
 {
 	position: absolute;
 	background-color: #FFFFFF;
@@ -23,7 +23,7 @@ body
 	border-bottom:0px;
 }
 
-.issue
+.item
 {
 	font-family: Verdana;
         font-size: 20px;
@@ -37,9 +37,10 @@ body
 	background-color: #FFFFFF;
 	text-align: center;
         cursor: pointer;
+	overflow: hidden;
 }
 
-.issue:hover
+.item:hover
 {
 	background-color: #CCCCCC;
 }
@@ -49,6 +50,29 @@ body
 	font-size: 30px;
 	line-height: 100px;
 }
+
+#issue_pane
+{
+	display: none;
+}
+
+#issue_back
+{
+        font-size: 30px;
+        line-height: 100px;
+}
+
+#argument_pane
+{
+	display: none;
+}
+
+#argument_back
+{
+        font-size: 30px;
+        line-height: 100px;
+}
+
 
 #content_pane
 {

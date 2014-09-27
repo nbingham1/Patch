@@ -6,9 +6,19 @@
 <script type="text/javascript" src="js/api.js"></script>
 </head>
 <body>
- <div id="menu_pane">
-  <div class="issue" id="new_issue" onclick="$('#start_issue').show();">
+ <div class="menu_pane" id="account_pane">
+  <div class="item" id="new_issue" onclick="$('#start_issue').show();">
    Post a new issue...
+  </div>
+ </div>
+ <div class="menu_pane" id="issue_pane">
+  <div class="item" id="issue_back" onclick="$('#issue_pane').hide(); $('#account_pane').show();">
+   Go back to the issues
+  </div>
+ </div>
+ <div class="menu_pane" id="argument_pane">
+  <div class="item" id="argument_back" onclick="$('#argument_pane').hide(); $('#issue_pane').show();">
+   Go back to the argments
   </div>
  </div>
  <div id="content_pane">
@@ -17,7 +27,7 @@
     Describe the issue as best you can.<br>
     <textarea name="issue_text" id="issue_text"></textarea><br>
     <button type="button" onclick="$('#start_issue').hide();">Cancel</button>
-    <button type="button" onclick="create_issue($('#issue').val(), function(){$('#issue').val(''); $('#describe_issue').hide(); });">Submit</button>
+    <button type="button" onclick="create_issue($('#issue_text').val(), function(){$('#issue_text').val(''); $('#start_issue').hide(); });">Submit</button>
    </form>
   </div>
  </div>

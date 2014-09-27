@@ -173,13 +173,12 @@ def rhine_n_similarity_flow(blob, count, pos, n):
 	    y.append(blob_rhine_similarity(sentences[i], sentences[i-n], count, pos))
 	return y
 
-def representative_blob(blob, count, pos):
-	sentences = blob.sentences
-	scores = [0] * len(sentences)
-        for i in xrange(len(sentences)):
-                for j in xrange(i+1, len(sentences)):
-                        sim = blob_path_similarity(sentences[i], sentences[j], count, pos)
+def representative_blob(blobs, count, pos):
+	scores = [0] * len(blobs)
+        for i in xrange(len(blobs)):
+                for j in xrange(i+1, len(blobs)):
+                        sim = blob_path_similarity(blobs[i], blobs[j], count, pos)
                         scores[i] += sim
 			scores[j] += sim
         
-	return sentences[scores.index(max(scores))]
+	return blobs[scores.index(max(scores))]

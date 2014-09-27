@@ -70,9 +70,12 @@ def list_path_similarity(words1, words2):
 			if pair[3] not in covered2:
 				covered2.append(pair[3])
 
+        print pairs
+
 	remove.sort(reverse=True)
 	for idx in remove:
 		pairs.pop(idx)
+        print pairs
 
 	total=0
 	score=0
@@ -123,16 +126,19 @@ def rhine_similarity(words1, words2):
 	return score
 
 
-print rb.freshRhine().distance('Warren', 'Iran')
 
 # Pull out news articles
 f1 = open('./data/articleFox.txt')
 a = f1.read()
+a = "Edward dog tree" 
 text1 = TextBlob(a)
 
 f2 = open('./data/article2.txt')
 b = f2.read()
+b = "Mary dog"
 text2 = TextBlob(b)
+
+
 
 ######
 
@@ -146,7 +152,7 @@ synsets1 = tuples_to_synsets(freq1_nn, "NN")
 
 freq1_nnp = freqGetTuple(5, wl1_nnp)
 print freq1_nnp
-
+synsets1_nnp = tuples_to_synsets(freq1_nnp, "NNP")
 #######
 
 wl2_nn = extract_words(text2, "NN")
@@ -158,13 +164,16 @@ print freq2_nn
 synsets2 = tuples_to_synsets(freq2_nn, "NN")
 
 freq2_nnp = freqGetTuple(5, wl2_nnp)
-print freq1_nnp
+print freq2_nnp
+synsets2_nnp = tuples_to_synsets(freq2_nnp, "NNP")
 
+######
 print "list_path_similarity of the two articles: "
 print list_path_similarity(synsets1, synsets2)
 
 print "pronoun similarity of the two articles: "
-print rhine_similarity(freq1_nnp, freq2_nnp)
+print list_path_similarity(synsets1_nnp, synsets2_nnp)
+#print rhine_similarity(freq1_nnp, freq2_nnp)
 
 #print extract_words(wiki, "NN").path_similarity(extract_words(wiki2, "NN"))
 

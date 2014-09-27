@@ -2,6 +2,7 @@ import nltk
 from textblob import *
 from textblob.wordnet import *
 from nltk.corpus import wordnet as wn
+from textProc import *
 
 def wordnet_pos(treebank_pos):
 	if "NN" in treebank_pos:

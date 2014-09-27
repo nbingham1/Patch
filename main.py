@@ -125,6 +125,21 @@ def rhine_similarity(words1, words2):
 
 	return score
 
+def blob_path_similary(blob1, blob2, count, pos):
+	wl1 = extract_words(blob1, pos)
+	wl2 = extract_words(blob2, pos)
+	fr1 = freqGetTuple(count, wl1)
+	fr2 = freqGetTuple(count, wl2)
+	sn1 = tuples_to_synsets(fr1, pos)
+	sn2 = tuples_to_synsets(fr2, pos)
+	return list_path_similarity(sn1, sn2)
+
+def path_similarity_flow(blob, count, pos)
+	sentences = blob.sentences
+	y = []
+	for i in xrange(len(sentences)-1)
+		y.append(blob_path_similarity(sentences[i], sentences[i+1], count, pos))
+	return y
 
 
 # Pull out news articles

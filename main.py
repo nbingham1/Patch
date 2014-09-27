@@ -197,6 +197,8 @@ print list_path_similarity(synsets1_nnp, synsets2_nnp)
 # This list will be a list of distances, indexed by sentence, of a word block
 sentence_dist = [.5, .6, .7, .6, .7, .2, .5, .2, .9, .5]
 
+
+
 plot(sentence_dist)
 xlabel("Sentence number")
 ylabel("correlation")

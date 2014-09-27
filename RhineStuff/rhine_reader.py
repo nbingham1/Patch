@@ -1,5 +1,7 @@
 from rhine import *
 
+#class 
+
 def rhineGenerate(keyfile):
     rhines = []
     f = open(keyfile)

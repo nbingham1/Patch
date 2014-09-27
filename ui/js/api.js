@@ -1,6 +1,31 @@
 
 
 function create_issue(issue_string, callback) {
+	/*$.ajax({
+		type: 'POST',
+		url: "cgi/create_issue.py",
+		data: "issue=" + issue_string,
+		beforeSend: function(XMLHttpRequest)
+		{
+			//Upload progress
+			XMLHttpRequest.upload.addEventListener("progress", function(evt){
+				if (evt.lengthComputable) {
+					var percentComplete = evt.loaded / evt.total;
+					//Do something with upload progress
+				}
+			}, false); 
+			//Download progress
+			
+			XMLHttpRequest.addEventListener("progress", function(evt){
+				if (evt.lengthComputable) {  
+					var percentComplete = evt.loaded / evt.total;
+					//Do something with download progress
+				}
+			}, false); 
+		},
+		success: callback);
+	*/
+
 	$.post("cgi/create_issue.py", { issue: issue_string }, callback);
 }
 

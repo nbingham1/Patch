@@ -240,7 +240,6 @@ def is_in_cluster(sent, clusters):
         if temp > cur_max:
             cur_max = temp
             max_idx = i
-    print cum
     if cur_max > .3:        #This is the threshold for new cluster
         return max_idx
     else:

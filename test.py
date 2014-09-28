@@ -15,7 +15,7 @@ from api2 import *
 from rhine import *
 from rhine_reader import *
 
-
+'''
 conn_grapher([[1,0.22,0.08],[0,1,0.18],[0,0,1]])
 
 distance_graph = [1,0,0],[0,1,0],[0,0,1]
@@ -115,22 +115,30 @@ print distance_graph
 
 '''
 
+
+
 a = TextBlob('Goldman Sachs has long had a comprehensive approach for addressing potential conflicts, the New York based bank said in a statement.')
 b = TextBlob('Mr Shelby stated that no one in the financial industry should be able to buy their way out from culpability when it is so strong it defies rationality - I agree with Warren on that.')
 c = TextBlob('It is unacceptable if, because of lack of preparedness and planning and global preperation, people are dying.')
 d = TextBlob('So, it should be no suprise then that, last week, Secretary of State John Kerry, told the United Nation\'s Security Council that in the fight against the Islamic State, There is a role for nearly every country in the world to play, including Iran')
-e = TextBlob('The kitty liked to play with the pretty bear')
-
-rblobs = [a,b,c,d,e]
+e = TextBlob('The kitten liked to play with the pretty bear')
+f = TextBlob('Often animals will enjoy playful interactions with each other')
+rblobs = [a,b,c,d,e,f]
 
 clusters = []
 for i in xrange(len(rblobs)):
     idx = is_in_cluster(rblobs[i],clusters)
     if idx == -1:
         clusters.append(rblobs[i])
+        print
+        print
         print "Forming new cluster: "
         print rblobs[i]
+        print
+        print
     else:
+        print
+        print
         print rblobs[i]
         print 
         print
@@ -138,8 +146,8 @@ for i in xrange(len(rblobs)):
         print
         print
         print clusters[idx]
-
-'''
+        print
+        print
 
 
 

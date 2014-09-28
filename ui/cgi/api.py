@@ -211,7 +211,7 @@ def find_arguments(flow):
     args = [0]
     #Find all local minima
     for i in xrange(1, len(flow)-1):
-        if (flow[i-1] - flow[i]> .05) and (flow[i+1]-flow[i]>.05):
+        if (flow[i-1] - flow[i]> 0.0) and (flow[i+1]-flow[i]>0.0):
             args.append(i)
     args.append(len(flow))
 
@@ -314,4 +314,4 @@ def conn_grapher(dists):
             if i != j:
                 graph.add_edge(pydot.Edge(nodes[i],nodes[j],label=str(dists[i][j])))
     
-    graph.write_png('whee.png', prog='neato')
+    graph.write_png('whee.png')

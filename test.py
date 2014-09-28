@@ -16,7 +16,7 @@ from rhine import *
 from rhine_reader import *
 
 
-conn_grapher([[1,2,3],[4,5,6],[7,8,9]])
+conn_grapher([[1,0.22,0.08],[0,1,0.18],[0,0,1]])
 
 distance_graph = [1,0,0],[0,1,0],[0,0,1]
 

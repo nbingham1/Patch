@@ -37,6 +37,10 @@ function pull_argument_summaries(issue_id, callback) {
 	$.post("cgi/pull_argument_summaries.py", { issue: issue_id }, callback);
 }
 
+function pull_sentences(argument_id, callback) {
+        $.post("cgi/pull_sentences.py", { argument: argument_id }, callback);
+}
+
 $(document).ready(function() {
 	pull_issue_summaries(function(data, response) {
 		$("#account_pane").append(data);

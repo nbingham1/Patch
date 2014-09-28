@@ -8,7 +8,7 @@ import matplotlib as plt
 from pylab import *
 from rhine import *
 from rhine_reader import *
-
+import pydot as pydot
 
 rb = RhineBundle()
 rb.rhineGenerate('Rhine.txt')
@@ -211,7 +211,7 @@ def find_arguments(flow):
     args = [0]
     #Find all local minima
     for i in xrange(1, len(flow)-1):
-        if (flow[i-1] > flow[i]) and (flow[i] < flow[i+1]):
+        if (flow[i-1] - flow[i]> .05) and (flow[i+1]-flow[i]>.05):
             args.append(i)
     args.append(len(flow))
 
@@ -301,4 +301,17 @@ def plotter(flows, args, uid):
     ylabel("Correlation to previous flow")
     title("Proper Noun Signal") 
     savefig(str(uid)+'subplots.jpg')
+
+def conn_grapher(dists):
+    graph = pydot.Dot(graph_type='graph')
+    nodes = []
+    for i in xrange(len(dists[0])):
+        nodes.append(pydot.Node(str(i+1)))
+        graph.add_node(nodes[i])
+
+    for i in xrange(len(dists[0])):
+        for j in xrange(i,len(dists)):
+            if i != j:
+                graph.add_edge(pydot.Edge(nodes[i],nodes[j],label=str(dists[i][j])))
     
+    graph.write_png('whee.png', prog='neato')

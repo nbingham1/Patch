@@ -16,74 +16,102 @@ from rhine import *
 from rhine_reader import *
 
 
-# Pull out news articles
-f1 = open('./data/articleFox.txt')
-a = f1.read()
-a = a.decode('utf-8').encode('ascii','ignore')
-text1 = TextBlob(a)
-sentences1 = text1.sentences
-f2 = open('./data/articleFox.txt')
-b = f1.read()
-b = b.decode('utf-8').encode('ascii','ignore')
-text2 = TextBlob(b)
-sentences2 = text1.sentences
+conn_grapher([[1,2,3],[4,5,6],[7,8,9]])
+
+distance_graph = [1,0,0],[0,1,0],[0,0,1]
+
+paths = ['./data/article1.txt','./data/articleFox.txt', './data/article3.txt']
+for pathi in xrange(len(paths)):
+    for pathj in xrange(pathi+1, len(paths)):
+        # Pull out news articles
+        f1 = open(paths[pathi])
+        a = f1.read()
+        a = a.decode('utf-8').encode('ascii','ignore')
+        text1 = TextBlob(a)
+        sentences1 = text1.sentences
+        f2 = open(paths[pathj])
+        b = f2.read()
+        b = b.decode('utf-8').encode('ascii','ignore')
+        text2 = TextBlob(b)
+        sentences2 = text2.sentences
 
 
-#rhine_dist = rhine_n_similarity_flow(sentences, 3, "NNP", 1)
+        #rhine_dist = rhine_n_similarity_flow(sentences, 3, "NNP", 1)
 
-#sents = []
+        #sents = []
 
-#for n in [1,2,3]:
-#    sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
+        #for n in [1,2,3]:
+        #    sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
 
-#sents.append(rhine_dist)
-dat1 = make_flow_data(sentences1)
-dat2 = make_flow_data(sentences2)
-flow1 = flow_fusion(dat1, 4)
-flow2 = flow_fusion(dat2, 4)
+        #sents.append(rhine_dist)
+        dat1 = make_flow_data(sentences1)
+        dat2 = make_flow_data(sentences2)
+        flow1 = flow_fusion(dat1, 4)
+        flow2 = flow_fusion(dat2, 4)
 
-minima1 = find_arguments(flow1)
-minima2 = find_arguments(flow2)
+        minima1 = find_arguments(flow1)
+        minima2 = find_arguments(flow2)
 
-args1 = []
-args2 = []
+        args1 = []
+        args2 = []
 
-for i in xrange(len(minima1)):
-	if i+1 < len(minima1):
-        	args1.append(sentences1[minima1[i]:minima1[i+1]-1])
-	else:
-		args1.append(sentences1[minima1[i]:])
+        for i in xrange(len(minima1)):
+                if i+1 < len(minima1):
+                        args1.append(sentences1[minima1[i]:minima1[i+1]-1])
+                else:
+                        args1.append(sentences1[minima1[i]:])
 
-for i in xrange(len(minima2)):
-	if i+1 < len(minima2):
-        	args2.append(sentences2[minima2[i]:minima2[i+1]-1])
-	else:
-		args2.append(sentences2[minima2[i]:])
-
-
-arg_reps1 = []
-arg_reps2 = []
-
-for arg in args1:
-	arg_reps1.append(representative_blob(arg1, 10, ""))
-for arg in args2:
-	arg_reps2.append(representative_blob(arg2, 10, ""))
-
-a = ''
-for rep in arg_reps1:
-    a = a + rep + ' '
-blobs1 = TextBlob(a)
-b = ''
-for rep in arg_reps2:
-    b = b + rep + ' '
-blobs2 = TextBlob(b)
+        for i in xrange(len(minima2)):
+                if i+1 < len(minima2):
+                        args2.append(sentences2[minima2[i]:minima2[i+1]-1])
+                else:
+                        args2.append(sentences2[minima2[i]:])
 
 
+        argblob1 = ''
+        for el in args1:
+            for els in el:
+                argblob1 += els.string
+        argblob1 = TextBlob(argblob1)
 
-conns = connection_matrix(blobs1, blobs2)
+        argblob2 = ''
+        for el in args2:
+            for els in el:
+                argblob2 += els.string
+        argblob2 = TextBlob(argblob2)
 
-print conns
+        arg_reps1 = []
+        arg_reps2 = []
 
+        for arg in args1:
+                arg_reps1.append(representative_blob(argblob1.sentences, 10, ""))
+        for arg in args2:
+                arg_reps2.append(representative_blob(argblob2.sentences, 10, ""))
+
+        a = ''
+        for rep in arg_reps1:
+            a = a + rep.string + ' '
+        blobs1 = TextBlob(a)
+        b = ''
+        for rep in arg_reps2:
+            b = b + rep.string + ' '
+        blobs2 = TextBlob(b)
+
+        print blobs1.sentences
+        print blobs2.sentences
+
+        conns = connection_matrix(blobs1.sentences, blobs2.sentences)
+
+        print conns
+
+        l = []
+        for el in conns:
+            l.append(sum(el)/len(el))
+
+        distance_graph[pathi][pathj] = sum(l)/len(l)
+
+
+print distance_graph
 
 '''
 

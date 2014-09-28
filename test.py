@@ -21,47 +21,70 @@ f1 = open('./data/articleFox.txt')
 a = f1.read()
 a = a.decode('utf-8').encode('ascii','ignore')
 text1 = TextBlob(a)
-sentences = text1.sentences
-'''
-rhine_dist = rhine_n_similarity_flow(sentences, 3, "NNP", 1)
+sentences1 = text1.sentences
+f2 = open('./data/articleFox.txt')
+b = f1.read()
+b = b.decode('utf-8').encode('ascii','ignore')
+text2 = TextBlob(b)
+sentences2 = text1.sentences
 
-sents = []
 
-for n in [1,2,3]:
-    sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
+#rhine_dist = rhine_n_similarity_flow(sentences, 3, "NNP", 1)
 
-sents.append(rhine_dist)
+#sents = []
 
-flow = flow_fusion(sents, 4)
+#for n in [1,2,3]:
+#    sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
 
-minima = find_arguments(flow)
+#sents.append(rhine_dist)
+dat1 = make_flow_data(sentences1)
+dat2 = make_flow_data(sentences2)
+flow1 = flow_fusion(dat1, 4)
+flow2 = flow_fusion(dat2, 4)
 
-args = []
+minima1 = find_arguments(flow1)
+minima2 = find_arguments(flow2)
 
-for i in xrange(len(minima)):
-	if i+1 < len(minima):
-        	args.append(sentences[minima[i]:minima[i+1]-1])
+args1 = []
+args2 = []
+
+for i in xrange(len(minima1)):
+	if i+1 < len(minima1):
+        	args1.append(sentences1[minima1[i]:minima1[i+1]-1])
 	else:
-		args.append(sentences[minima[i]:])
+		args1.append(sentences1[minima1[i]:])
 
-print "Arguments:"
-for arg in args:
-	print arg
-	print
-	print
+for i in xrange(len(minima2)):
+	if i+1 < len(minima2):
+        	args2.append(sentences2[minima2[i]:minima2[i+1]-1])
+	else:
+		args2.append(sentences2[minima2[i]:])
 
-arg_reps = []
 
-for arg in args:
-	arg_reps.append(representative_blob(arg, 10, ""))
+arg_reps1 = []
+arg_reps2 = []
 
-print "Argument Representative Blobs:"
-for rep in arg_reps:
-	print rep
-	print
+for arg in args1:
+	arg_reps1.append(representative_blob(arg1, 10, ""))
+for arg in args2:
+	arg_reps2.append(representative_blob(arg2, 10, ""))
 
-print "Article Representative Blob:"
-rblob = representative_blob(arg_reps, 10, "")
+a = ''
+for rep in arg_reps1:
+    a = a + rep + ' '
+blobs1 = TextBlob(a)
+b = ''
+for rep in arg_reps2:
+    b = b + rep + ' '
+blobs2 = TextBlob(b)
+
+
+
+conns = connection_matrix(blobs1, blobs2)
+
+print conns
+
+
 '''
 
 a = TextBlob('Goldman Sachs has long had a comprehensive approach for addressing potential conflicts, the New York based bank said in a statement.')
@@ -88,6 +111,7 @@ for i in xrange(len(rblobs)):
         print
         print clusters[idx]
 
+'''
 
 
 

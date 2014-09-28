@@ -246,6 +246,27 @@ def is_in_cluster(sent, clusters):
     else:
         return -1
 
+def make_flow_data(sentences):
+    rhine_dist = rhine_n_similarity_flow(sentences, 3, "NNP", 1)
+    sents = []
+    for n in [1,2,3]:
+        sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
+    sents.append(rhine_dist)
+    return sents
+
+
+#Takes two lists of blobs, outputs an N lists of length M
+def connection_matrix(blobs1, blobs2):
+    conns = []
+    for blob1 in blobs1:
+        line = []
+        for blob2 in blobs2:
+            a = blob_path_similarity(blob1,blob2, 5, "NN")
+            b = blob_rhine_similarity(blob1,blob2,4, "NNP")
+            line.append(.6*a + .4*b)
+        conns.append(line)
+    return conns
+
 def representative_blob(blobs, count, pos):
 	scores = [0] * len(blobs)
         for i in xrange(len(blobs)):
@@ -255,3 +276,29 @@ def representative_blob(blobs, count, pos):
 			scores[j] += sim
         
 	return blobs[scores.index(max(scores))]
+
+#0 is main signal, 1 is partitioned signal nouns, 2 is partitioned proper nouns
+def plotter(flows, args, uid):
+
+    figure()
+    plot(flows[0], 'o-')
+    xlabel("Sentence Number")
+    ylabel("Correlation to previous flow")
+    title("Segmentation of Article into Primary Thoughts (Fused signal)")
+    for el in args:
+        axvline(x=el, ymin=0, linewidth=1, color='r')
+    savefig(str(uid)+'flow.jpg')
+
+    figure()
+    subplot(2,1,1)
+    plot(flows[1], 'o-')
+    ylabel("Correlation to previous flow")
+    title("Part Of Speech Signal")
+
+    plt.subplot(2, 1, 2)
+    plot(flows[2], 'o-')
+    xlabel("Sentence Number")
+    ylabel("Correlation to previous flow")
+    title("Proper Noun Signal") 
+    savefig(str(uid)+'subplots.jpg')
+    

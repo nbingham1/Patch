@@ -56,6 +56,11 @@ sents.append(rhine_dist)
 
 flow = flow_fusion(sents, 4)
 
+
+args = find_arguments(flow)
+plotter ([flow, sents[0], rhine_dist], args, 666)
+
+'''
 figure()
 plot(sents[0], 'o-')
 xlabel("Sentence number")
@@ -84,5 +89,6 @@ for el in args:
     axvline(x=el, ymin=0, linewidth=1, color='r')
 show()
 
+'''
 
 

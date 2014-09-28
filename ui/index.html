@@ -13,7 +13,7 @@
   <div class="content_pane" id="account_pane_content"></div>
  </div>
  <div class="menu_pane" id="issue_pane">
-  <div class="item" id="issue_back" onclick="$('#issue_pane').hide(); $('#account_pane').show();">
+  <div class="item" id="issue_back" onclick="$('#issue_pane').hide(); $('#account_pane').show(); $('#plots').html(''); ">
    Go back to the issues
   </div>
   <div class="content_pane" id="issue_pane_content"></div>
@@ -32,6 +32,8 @@
     <button type="button" onclick="$('#start_issue').hide();">Cancel</button>
     <button type="button" onclick="create_issue($('#issue_text').val(), function(){$('#issue_text').val(''); $('#start_issue').hide(); });">Submit</button>
    </form>
+  </div>
+  <div id="plots">
   </div>
  </div>
 </body>

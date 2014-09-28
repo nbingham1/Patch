@@ -10,6 +10,11 @@ body
 	border: 0px;
 }
 
+#plots
+{
+	text-align: center;
+}
+
 .menu_pane
 {
 	position: absolute;

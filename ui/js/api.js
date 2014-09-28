@@ -34,6 +34,7 @@ function pull_issue_summaries(callback) {
 }
 
 function pull_argument_summaries(issue_id, callback) {
+	$('#plots').html('<img src="' + issue_id + 'flow.jpg" height=50%><br><img src="' + issue_id + 'subplots.jpg" height=50%>');	
 	$.post("cgi/pull_argument_summaries.py", { issue: issue_id }, callback);
 }
 

@@ -1,0 +1,79 @@
+China’s position as the most active bitcoin trading market has come to attention again as Beijing exchange OKCoin topped daily dollar trades for the first time earlier this week. This comes weeks after Shanghai exchange BTC China highlighted that yuan trades comprised more than 70% of trading volume.
+
+As Chinese exchanges jostle for the top spot in global trading volumes, yuan trading is now three times greater than dollar trades. Analysts and exchange operators say China’s dominance in bitcoin trading is largely due to macro factors like China’s investment environment, but caution that current volume figures may mask an accurate picture of bitcoin trading flows.
+
+Raffael Danielli, an economist who tracks digital currency trading at his Matlab Trading blog, took a macro view of China’s dominance in the bitcoin markets:
+
+“It should not come as a surprise if we see more volume growth coming from Asia than from the West as it would simply reflect the existing disparity in economic growth.”
+
+Bitcoin trading volume was dominated by US dollar trading until the end of 2013. USD-bitcoin trades routinely accounted for more than 70% of traded volume, according to data from Bitcoinity.
+
+Last October, dollar dominance began to slip, while yuan-bitcoin trades shot up. This came after the news that the US government had shut down the Silk Road black market, and as 2013 came to a close, CNY and USD trading took turns as market leaders.
+
+By March, however, yuan trades began a decisive climb away from dollar trades, breaking the 70% mark of trading volume. Dollar trades plunged to under 25%, and the end of June saw the widest spread in the share of trading volume between yuan and dollar trades: the Chinese currency accounted for 79% of trades, while greenbacks comprised just 16% of the share.
+
+Weekly trading volume data from Bitcoinity was used to look at trading volume trends and features over the last two years. Bitcoinity data was chosen because the three top Chinese exchanges were represented, along with the major exchanges outside China.
+
+Kacper Cieśla, who runs Bitcoinity, says the data on his site is all self-reported by each exchange. There is a gap in OKCoin data for Nov 2013 to May 2014, which Cieśla attributes to a technical issue at the exchange (OKCoin confirmed that there was a halt in data collection by Bitcoinity for the period).
+
+OKCoin’s chief technology officer Changpeng Zhao echoed the macro theme brought up by Danielli, and noted that the range of assets available for retail investors in China is relatively limited, with tight controls on real estate, for example:
+
+“There is not much else one can invest in. This, combined with the increase in buying power – people naturally look to bitcoins.”
+
+Arthur Hayes, who runs cryptocurrency derivatives exchange BitMEX in Hong Kong, agreed that Chinese trading volumes should outpace trading in the rest of the world, given the Chinese economy’s growth.
+
+Hayes cited China’s larger population, restricted investment environment and more Internet-friendly banking system as specific reasons for greater bitcoin trading in that country, but he cautioned that the trading volume data may overstate China’s dominance, because it’s self-reported.
+
+“China definitely is number one, but quantifying its lead is debatable. But I don’t doubt that China trades more bitcoin than any nation globally,” he said.
+
+Questions about the veracity of self-reported exchange volume data have dogged Chinese exchanges in the past. OKCoin’s Zhao insisted that his exchange provided accurate data. BTC China founder Bobby Lee didn’t respond to a request for comment.
+
+Huobi’s chief executive, Leon Li, declined to comment on the veracity of his exchange’s volume data, and suggested instead that users place a 100 BTC market-sell order on various exchanges to confirm market depth themselves – a suggestion that was also offered by BitMEX’s Hayes.
+
+“That is an empirical method, which provides more useful information than self-reported exchange transaction volume,” Li said.
+
+As the share of yuan trading has grown, the amount of trades handled by Chinese exchanges has increased with it. The yuan share spiked last October, closely tracked by an increase in trading volume on BTC China. That exchange briefly held the largest share of trades, accounting for 48% of trades at its peak, from last October to December.
+
+By contrast, the amount of trading activity on large exchanges outside China, like Bitstamp and BTC-e, has declined steadily since last autumn. Total trading volume has increased at a steady rate this year, after a growth spurt around the end of last October.
+
+BTC China then lost its pole position to Huobi, which overtook the share of trades in mid December and continued to rocket to 67% of trades by January.
+
+Huobi was surpassed by OKCoin this year, and Bitcoinity data shows that OKCoin emerged as the trading volume leader in late May.
+
+OKCoin’s own trading data shows that it completed trades worth just over 1m BTC in the last week of March, while Bitcoinity data shows Huobi trading volume for the corresponding period was 729,686 BTC.
+
+Today, OKCoin trades take up about 30% of volume while Huobi accounts for around 20%. BTC China, however is climbing quickly, adding 10 basis points over September to take 18% of the volume pie.
+
+While macro factors may account for China’s lead in bitcoin trading, specific details like fee structures on Chinese exchanges give a further boost to the amount of trades on Chinese exchanges.
+
+Danielli pointed to OKCoin’s margin-trading structure as one reason trading volumes have grown on that exchange. As users trade more, they accumulate ‘reward points’ that allow them to borrow more yuan for margin trading. CNY-BTC trading is free on OKCoin and Huobi.
+
+“People are ‘trading with themselves’ to increase volume and get to [the desired points level],” Danielli said.
+
+The sort of trading described by Danielli is illegal in US equities and commodities markets, where it’s known as ‘wash trading’. In these transactions, a security doesn’t technically change hands, and is effectively being traded by one party who takes both sides of the deal.
+
+Such trades are outlawed because they distort market information about a security and can mislead other investors, according to the US Securities and Exchange Commission. Hayes, formerly an equity derivatives trader at Citi, said the zero-fees structure used by Chinese exchanges means that the chances of wash trading on those platforms are high:
+
+“Wash trading is a very big deal in traditional finance, but in bitcoin-land, I could just say I traded $1 trillion in bitcoin derivatives yesterday, but if you’re stupid enough to believe me, then go ahead.”
+
+Tim Swanson, who has written books on business in China and works for Hong Kong-based altcoin exchange Melotic, pointed out that even with possibly-inflated yuan trading volumes, dollar trades may actually be far greater, but aren’t represented in the data because they’re traded over-the-counter.
+
+Swanson noted that miners and US-based ‘universal’ bitcoin firms like BitPay or Coinbase could be processing thousands of coins daily with counterparties with large fiat and bitcoin holdings, but are never traded on an exchange.
+
+“The OTC and off-chain liquidity inventory is not being factored into most of the overall discussion on trade volume. The aggregate volumes of OTC or ‘dark inventory’ numbers may actually be larger in US dollars than [yuan],” he said.
+
+Even if trading volume on Chinese exchanges is inflated by wash trades, it’s unclear how the exchanges stand to gain from occupying the top spot in global trading volumes, since they don’t earn any revenue from the activity.
+
+Swanson thinks pumped up trading volumes could simply be used to build a user-base that would then pay for revenue-generating products. Huobi, for example, has launched a fixed-term certificate of deposit that requires a minimum deposit of 1 BTC.
+
+“[Chinese exchanges] are busily trying to answer that question with a variety of value-added services like margin trading and issuing derivative products as well as integrating with API services,” he said.
+
+China maintains strict controls on foreign exchange, although the government is said to be loosening these restrictions gradually. Current rules mean companies and individuals can only move small amounts of funds in and out of the country.
+
+For Hayes, China’s currency controls and the large amount of genuine trading taking place mean the bitcoin markets are divided into those that can tap Chinese markets and those that can’t.
+
+Institutional investors in financial centres like New York or London already face regulatory obstacles to accessing Chinese equity markets, for example. As a result, Chinese markets are walled off, and their dominance may have little impact on traders outside the country.
+
+Hayes said:
+
+“China might have 70% of the volume, but institutional investors will not trade Bitcoin onshore in China [...] The market is bifurcated. As a non-Chinese person, you can’t interact with the Chinese banking system. Yuan is still a restricted currency. It means a global investment firm has to trade bitcoin-dollar, because they’re in New York or London.”

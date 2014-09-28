@@ -20,6 +20,9 @@ print
 form = cgi.FieldStorage()
  
 issue = form.getvalue('issue')
+issue = issue.decode('utf-8').encode('ascii', 'ignore')
+
+
 sentences = TextBlob(issue).sentences
 
 
@@ -27,12 +30,13 @@ rhine_dist = rhine_n_similarity_flow(sentences, 5, "NNP", 1)
 
 sents = []
 
-for n in [1,2,3,4]:
-    sents.append(path_n_similarity_flow(sentences, 5, "NN", n))
+for n in [1,2,3]:
+    sents.append(path_n_similarity_flow(sentences, 10, "NN", n))
 
 sents.append(rhine_dist)
-flow = flow_fusion(sents, 5)
+flow = flow_fusion(sents, 4)
 minima = find_arguments(flow)
+
 
 args = []
 for i in xrange(len(minima)):
@@ -43,9 +47,9 @@ for i in xrange(len(minima)):
 
 arg_reps = []
 for arg in args:
-        arg_reps.append(representative_blob(arg, 10, ""))
+        arg_reps.append(representative_blob(arg, 10, "NN"))
 
-rep = representative_blob(arg_reps, 10, "")
+rep = representative_blob(arg_reps, 10, "NN")
 
 
 
@@ -71,4 +75,6 @@ result = cur.fetchall()
 
 if con:
 	con.close()
+
  
+plotter([flow, sents[0], rhine_dist], minima, issue_id)

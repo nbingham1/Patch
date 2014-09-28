@@ -1,0 +1,25 @@
+The story of Washington is often told from the halls of Congress — how Republicans keep throwing bombs at the president, why Obama can't get anything done except by executive order, which party has raised the most money, and so on. Few people, except perhaps political scientists, are interested in the power politics playing out within the executive branch. But the jockeying among federal agencies for authority has very real effects for people like you and me.
+
+For example, the Federal Trade Commission wrote to the Federal Communications Commission on Monday about how it regulates Internet service providers (ISPs). The FCC is exploring how best to encourage broadband providers to upgrade their networks, particularly in rural and low-income areas that aren't very well served. To that end, the agency asked the public to weigh in on whether ISPs have any legal obligations regarding privacy and security.
+
+The FTC has been making a name for itself on just these sorts of issues. The agency has gone after a number of tech companies, such as Snapchat, Yelp, Google and Facebook, for allegedly violating users' privacy in one way or another. So it wasn't a surprise to see the FTC write to the FCC. What was surprising was to see the lines of power between the two agencies drawn so clearly. And while the filing was couched in a factual "here's where our authority ends and yours begins" kind of way, it was hard not to miss what might be called a little sibling rivalry.
+
+The FTC's main authority derives from Section 5 of the FTC Act, which allows the agency to sue companies for "unfair or deceptive" business practices. That includes ISPs.
+
+"A broadband provider that makes commitments — either expressly or implicitly — regarding its privacy and security practices, and fails to live up to such commitments, risks violation of Section 5 of the FTC Act," the FTC wrote. In addition, ISPs can be held liable under two other laws designed to protect children's privacy and consumers' credit.
+
+But here's where it gets messy with the FCC. There's a carveout in the law that lets the FCC handle all enforcement matters related to "common carriers" — a group that includes, for example, telephone companies. In the net neutrality fight, the FCC is debating whether it should place ISPs into that same category. If it does, that would put broadband providers beyond the reach of the trade commission, for the most part.
+
+If the FCC continues to regulate broadband as an "information service" — rather than as a common carrier under Title II of the Communications Act — then the trade commission would still be able to take action against ISPs.
+
+"Broadband Internet access services are not currently offered on a common carrier basis," the FTC wrote, "and the FTC therefore has jurisdiction over such services."
+
+Officials at the FTC, who spoke on condition of anonymity, tell me that the agency sees a role for itself on net neutrality — indicating an interest in regulating ISPs more generally. This is consistent with a recent House hearing in which current and former Republican officials argued that new rules for broadband providers weren't necessary because the FTC could help keep ISPs in line. Speaking strictly for himself and not for the trade commission, sitting Republican commissioner Joshua Wright said a traditional antitrust analysis could ward off the worst harms in a world where the FCC regulated broadband providers only lightly.
+
+The FTC and the FCC are generally more aligned than at odds. The trade commission regularly publishes reports on tech issues that the communications commission can easily point to as evidence for its proceedings.
+
+"In its 2012 privacy report," the FTC wrote in its filing, "the FTC discussed the position of ISPs as major gateways to the Internet and their ability to access vast amounts of unencrypted data and to develop comprehensive profiles of their customers."
+
+That said, the FTC has a clear institutional interest in keeping its authority as broad as possible. Just like people, bureaucratic agencies are rewarded with bigger budgets and can do more to determine outcomes the more important they seem — which often leads to competition. The political scientist Graham Allison, in his study of the Cuban Missile Crisis, traced big foreign policy decisions back to bureaucratic jockeying.
+
+While the stakes aren't quite as high as nuclear armageddon here, judgments about which agency can, should (and does) hold the cards when it comes to regulating ISPs will shape how those companies behave or misbehave.

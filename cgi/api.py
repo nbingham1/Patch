@@ -11,7 +11,7 @@ from rhine_reader import *
 import pydot as pydot
 
 rb = RhineBundle()
-rb.rhineGenerate('Rhine.txt')
+rb.rhineGenerate('/var/www/patch/Rhine.txt')
 #To get a fresh rhine request, do rb.freshRhine() which returns a rhine
 
 def diff(a, b):
@@ -286,7 +286,7 @@ def plotter(flows, args, uid):
     title("Segmentation of Article into Primary Thoughts (Fused signal)")
     for el in args:
         axvline(x=el, ymin=0, linewidth=1, color='r')
-    savefig(str(uid)+'flow.jpg')
+    savefig('/var/www/patch/'+str(uid)+'flow.png')
 
     figure()
     subplot(2,1,1)
@@ -299,7 +299,7 @@ def plotter(flows, args, uid):
     xlabel("Sentence Number")
     ylabel("Correlation to previous flow")
     title("Proper Noun Signal") 
-    savefig(str(uid)+'subplots.jpg')
+    savefig('/var/www/patch/'+str(uid)+'subplots.png')
 
 def conn_grapher(dists):
     graph = pydot.Dot(graph_type='graph')

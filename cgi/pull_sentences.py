@@ -10,7 +10,7 @@ argument = form.getvalue('argument')
 con = db.connect('localhost', 'patch', 'democracy in action', 'patch')
 cur = con.cursor()
 
-cur.execute("select sentence from sentences where argument=%s", (argument));
+cur.execute("select sentence from sentences where argument=%s", (argument,));
 
 results = cur.fetchall()
 

@@ -10,7 +10,7 @@ issue = form.getvalue('issue')
 con = db.connect('localhost', 'patch', 'democracy in action', 'patch')
 cur = con.cursor()
 
-cur.execute("select id,rep from arguments where issue=%s", (issue));
+cur.execute("select id,rep from arguments where issue=%s", (issue,));
 
 results = cur.fetchall()
 

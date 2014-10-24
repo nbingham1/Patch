@@ -4,7 +4,7 @@ from rhine_reader import *
 
 rb = RhineBundle()
 
-rb.rhineGenerate('Rhine.txt')
+rb.rhineGenerate('/var/www/patch/Rhine.txt')
 
 
 tic = timeit.default_timer()

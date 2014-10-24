@@ -25,21 +25,20 @@ function create_issue(issue_string, callback) {
 		},
 		success: callback);
 	*/
-
-	$.post("cgi/create_issue.py", { issue: issue_string }, callback);
+	$.post("cgi/create_issue.py", { issue: issue_string }, callback).fail(function() { callback(); alert("error") });
 }
 
 function pull_issue_summaries(callback) {
-	$.post("cgi/pull_issue_summaries.py", callback);
+	$.post("cgi/pull_issue_summaries.py", callback).fail(function() { callback(); alert("error") });
 }
 
 function pull_argument_summaries(issue_id, callback) {
-	$('#plots').html('<img src="' + issue_id + 'flow.jpg" height=50%><br><img src="' + issue_id + 'subplots.jpg" height=50%>');	
-	$.post("cgi/pull_argument_summaries.py", { issue: issue_id }, callback);
+	$('#plots').html('<img src="' + issue_id + 'flow.png" height=50%><br><img src="' + issue_id + 'subplots.png" height=50%>');	
+	$.post("cgi/pull_argument_summaries.py", { issue: issue_id }, callback).fail(function() { callback(); alert("error") });
 }
 
 function pull_sentences(argument_id, callback) {
-        $.post("cgi/pull_sentences.py", { argument: argument_id }, callback);
+        $.post("cgi/pull_sentences.py", { argument: argument_id }, callback).fail(function() { callback(); alert("error") });
 }
 
 $(document).ready(function() {

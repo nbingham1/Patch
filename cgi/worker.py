@@ -35,9 +35,9 @@ while 1:
 
 	arg_reps = []
 	for arg in args:
-	        arg_reps.append(representative_blob(arg, 10, "NN"))
+	        arg_reps.append(representative_blob(arg, 10, ""))
 
-	rep = representative_blob(arg_reps, 10, "NN")
+	rep = representative_blob(arg_reps, 10, "")
 	
 	con = db.connect('localhost', 'patch', 'democracy in action', 'patch')
 	cur = con.cursor()

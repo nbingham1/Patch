@@ -9,6 +9,8 @@ from pylab import *
 from rhine import *
 from rhine_reader import *
 import pydot as pydot
+from bs4 import BeautifulSoup
+#import urllib2
 
 rb = RhineBundle()
 rb.rhineGenerate('/var/www/patch/Rhine.txt')
@@ -67,7 +69,7 @@ def list_path_similarity(words1, words2):
 	covered2 = []
 	remove = []
 	for index, pair in enumerate(pairs):
-		if pair[2] in covered1 and pair[3] in covered2:
+		if pair[2] in covered1 or pair[3] in covered2:
 			remove.append(index)
 		else:
 			if pair[2] not in covered1:
@@ -314,3 +316,7 @@ def conn_grapher(dists):
                 graph.add_edge(pydot.Edge(nodes[i],nodes[j],label=str(dists[i][j])))
     
     graph.write_png('whee.png')
+
+#def article_from_site(url):
+#	soup = BeautifulSoup(urlopen(url))
+		

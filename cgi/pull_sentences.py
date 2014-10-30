@@ -18,11 +18,11 @@ if con:
 	con.close()
  
 # headers 
-print "Content-type: text/html"
-print 
+print("Content-type: text/html")
+print("")
 
 # data
 for result in results:
-	print '<div class="item">'
-	print result[0]
-	print '</div>'
+	print('<div class="item">')
+	print(result[0])
+	print('</div>')

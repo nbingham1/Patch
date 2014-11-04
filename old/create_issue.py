@@ -14,9 +14,9 @@ form = cgi.FieldStorage()
 
 issue = ""
 if 'issue' in form:
-	issue = form['issue']
+	issue = form['issue'].value
 elif 'url' in form:
-	url = form['url']
+	url = form['url'].value
 	r = requests.get(url)
 	soup = BeautifulSoup(r.text)
 	for p in soup.body.findAll("p"):

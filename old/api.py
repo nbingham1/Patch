@@ -317,6 +317,3 @@ def conn_grapher(dists):
     
     graph.write_png('whee.png')
 
-#def article_from_site(url):
-#	soup = BeautifulSoup(urlopen(url))
-		

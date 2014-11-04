@@ -43,8 +43,12 @@ while 1:
 						cur.execute("insert into userlinks (uid, sid, level) values (%s, %s, %s)", (str(uid), str(indices[i]), str(level)))
                                                 con.commit()
 						found = True
-					elif parent_indices[i][1] > level or (parent_indices[i][1] == level and indices[i] != indices[parent_indices[i][0]]):
-						cur.execute("insert into statementlinks (parent, child, level) values (%s, %s, %s)", (str(indices[parent_indices[i][0]]), str(indices[i]), str(level)))
+					elif parent_indices[i][1] == level and indices[i] != indices[parent_indices[i][0]]:
+                                                cur.execute("insert into statementlinks (parent, child, level) values (%s, %s, %s)", (str(indices[parent_indices[i][0]]), str(indices[i]), str(level)))
+						con.commit()
+						found = True
+					elif parent_indices[i][1] > level:
+						cur.execute("insert into statementlinks (parent, child, level) values (%s, %s, %s)", (str(indices[i]), str(indices[i]), str(level)))
 						con.commit()
 						found = True
 				level += 1

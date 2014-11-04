@@ -11,7 +11,7 @@ import pydot
 
 
 rb = RhineBundle()
-rb.rhineGenerate('/var/www/patch/Rhine.txt')
+rb.rhineGenerate('/var/data/patch/Rhine.txt')
 
 def wordnet_pos(treebank_pos):
 	if "NN" in treebank_pos:
